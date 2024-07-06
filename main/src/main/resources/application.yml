@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: dividendpj
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: h2
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
+
+  datasource:
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:dividenepj
+
+  data:
+    redis:
+      port: 6379
+      host: localhost
+
+  cache:
+    type: redis
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+  jwt:
+    secret: amgtc3ByaW5nLWJvb3QtZGl2aWRlbmQtcHJvamVjdC10dXRvcmlhbC1qd3Qtc2VjcmV0LWtleQo
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: info
+        type:
+          descriptor:
+            sql: trace
+
+scheduler:
+  scrap:
+    yahoo: "0 0 0 * * *"
+
+job:
+  scrap:
+    job-name: "scrapJob"
+    step-name: "scrapStep"
